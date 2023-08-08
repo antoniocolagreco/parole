@@ -5,10 +5,13 @@
   "name": "Name",
   "email": "Email",
   "email_address": "Email address",
+  "username": "Username",
   "password": "Password",
   "or_continue_with": "Or continue with",
   "new_to_app": "New to Parole?",
   "already_have_an_account": "Already have an account?",
   "create_an_account": "Create an account",
-  "login": "Login"
+  "login": "Login",
+  "credentials": "credentials",
+  "something_went_wrong": "Something went wrong!"
 }

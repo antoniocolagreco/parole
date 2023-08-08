@@ -23,8 +23,12 @@ const AuthSocialButton: FC<AuthSocialButtonProps> = (props) => {
       ring-1
       ring-inset
       ring-gray-300
-      hover:bg-gray-300
-      focus:outline-offset-0`,
+      hover:bg-gray-100
+      outline-violet-600
+      focus:outline-offset-0
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-offset-2`,
         disabled && 'hover:bg-white',
         className
       )}

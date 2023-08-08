@@ -1,9 +1,12 @@
 'use client'
 
 import { default as dictionary } from '@/languages/en.json'
+import axios, { AxiosError } from 'axios'
 import clsx from 'clsx'
+import { signIn } from 'next-auth/react'
 import { FC, HTMLAttributes, useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import Button from '../inputs/Button'
 import Input from '../inputs/Input'
@@ -20,6 +23,7 @@ const AuthForm: FC<AuthFromProps> = (props) => {
   const { className, ...otherProps } = props
   const [variant, setVariant] = useState<Variant>(Variant.LOGIN)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const {
     register,
     handleSubmit,
@@ -32,20 +36,48 @@ const AuthForm: FC<AuthFromProps> = (props) => {
     },
   })
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log('submit')
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
     if (variant === Variant.REGISTER) {
-      //TODO Axios Register
+      axios
+        .post('/api/register', data)
+        .catch((error: AxiosError) => {
+          return toast.error(error.response?.data as string)
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
     }
     if (variant === Variant.LOGIN) {
-      //TODO NextAuth SignIn
+      signIn('credentials', { ...data, redirect: false })
+        .then((response) => {
+          if (response?.error) {
+            toast.error(response.error)
+          }
+          if (response?.ok && !response.error) {
+            toast.success('Success')
+          }
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
     }
   }
 
   const socialAction = (action: string) => {
     setIsLoading(true)
-    //TODO NextAuth Social SignIn
+    signIn(action, { redirect: false })
+      .then((response) => {
+        if (response?.error) {
+          toast.error(response.error)
+        }
+        if (response?.ok && !response.error) {
+          toast.success('Success')
+        }
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const toggleVariant = useCallback(() => {
@@ -61,10 +93,31 @@ const AuthForm: FC<AuthFromProps> = (props) => {
       <div className='bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10'>
         <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
           {variant === Variant.REGISTER && (
-            <Input id='name' label={dictionary.name} register={register} errors={errors} disabled={isLoading} />
+            <Input
+              id='name'
+              type='text'
+              label={dictionary.name}
+              register={register}
+              errors={errors}
+              disabled={isLoading}
+            />
           )}
-          <Input id='email' label={dictionary.email_address} register={register} errors={errors} disabled={isLoading} />
-          <Input id='password' label={dictionary.password} register={register} errors={errors} disabled={isLoading} />
+          <Input
+            id='email'
+            type='email'
+            label={dictionary.email_address}
+            register={register}
+            errors={errors}
+            disabled={isLoading}
+          />
+          <Input
+            id='password'
+            type='password'
+            label={dictionary.password}
+            register={register}
+            errors={errors}
+            disabled={isLoading}
+          />
           <Button className='w-full' disabled={isLoading} type='submit'>
             {variant === Variant.LOGIN ? dictionary.sign_in : dictionary.register}
           </Button>
