@@ -1,6 +1,6 @@
 'use client'
 
-import { default as dictionary } from '@/languages/en.json'
+import { default as dictionary } from '@languages/en.json'
 import axios, { AxiosError } from 'axios'
 import clsx from 'clsx'
 import { signIn } from 'next-auth/react'

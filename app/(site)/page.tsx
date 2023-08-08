@@ -1,5 +1,5 @@
-import AuthForm from '@/components/auth/AuthForm'
-import { default as dictionary } from '@/languages/en.json'
+import AuthForm from '@components/auth/AuthForm'
+import { default as dictionary } from '@languages/en.json'
 import Image from 'next/image'
 
 export default function Home() {

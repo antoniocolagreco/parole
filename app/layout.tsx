@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
-import ClientToaster from '../components/ClientToaster/ClientToaster'
+import ClientToaster from '../components/clientToaster/ClientToaster'
 import AuthContext from '../contexts/AuthContext'
 import './globals.css'
 

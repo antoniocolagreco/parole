@@ -13,5 +13,9 @@
   "create_an_account": "Create an account",
   "login": "Login",
   "credentials": "credentials",
-  "something_went_wrong": "Something went wrong!"
+  "something_went_wrong": "Something went wrong!",
+  "select_a_chat_or_start_a_new_conversation": "Select a chat or start a new conversation",
+  "chat": "Chat",
+  "users": "Users",
+  "logout": "Logout"
 }
