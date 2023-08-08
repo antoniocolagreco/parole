@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Nunito_Sans } from 'next/font/google'
-import ToasterContext from '../contexts/ToasterContext'
-
+import ClientToaster from '../components/ClientToaster/ClientToaster'
+import AuthContext from '../contexts/AuthContext'
 import './globals.css'
 
 const font = Nunito_Sans({ subsets: ['latin'] })
@@ -15,8 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={font.className}>
-        <ToasterContext />
-        {children}
+        <AuthContext>
+          <ClientToaster />
+          {children}
+        </AuthContext>
       </body>
     </html>
   )

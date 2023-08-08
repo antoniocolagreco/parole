@@ -12,10 +12,22 @@ type InputProps = {
   label?: string | undefined
   register?: UseFormRegister<FieldValues>
   errors?: FieldErrors
+  autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete']
 }
 
 const Input: FC<InputProps> = (props) => {
-  const { containerClassName, className, label, id, type, required, register, errors, disabled } = props
+  const {
+    containerClassName,
+    className,
+    label,
+    id,
+    autoComplete = id,
+    type,
+    required,
+    register,
+    errors,
+    disabled,
+  } = props
   return (
     <div className={clsx(``, containerClassName)}>
       <label htmlFor={id} className='block text-sm font-medium leading-6 text-gray-900'>
@@ -25,8 +37,8 @@ const Input: FC<InputProps> = (props) => {
         <input
           id={id}
           type={type}
-          autoComplete={id}
           disabled={disabled}
+          autoComplete={autoComplete}
           className={clsx(
             `form-input 
             block w-full 

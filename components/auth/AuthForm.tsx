@@ -28,21 +28,19 @@ const AuthForm: FC<AuthFromProps> = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FieldValues>({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-    },
-  })
+  } = useForm<FieldValues>()
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
     if (variant === Variant.REGISTER) {
       axios
         .post('/api/register', data)
+        .then((response) => {
+          signIn('credentials', data)
+        })
         .catch((error: AxiosError) => {
-          return toast.error(error.response?.data as string)
+          console.log(error)
+          toast.error(error.response?.data as string)
         })
         .finally(() => {
           setIsLoading(false)
@@ -89,7 +87,7 @@ const AuthForm: FC<AuthFromProps> = (props) => {
   }, [variant])
 
   return (
-    <div className={clsx(`mt-8 mx-auto w-full max-w-md`, className)}>
+    <div className={clsx(`mt-8 mx-auto w-full max-w-md`, className)} {...otherProps}>
       <div className='bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10'>
         <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
           {variant === Variant.REGISTER && (
@@ -113,6 +111,7 @@ const AuthForm: FC<AuthFromProps> = (props) => {
           <Input
             id='password'
             type='password'
+            autoComplete='current-password'
             label={dictionary.password}
             register={register}
             errors={errors}

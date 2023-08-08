@@ -1,6 +1,6 @@
-import prisma from '@/app/libs/prismadb'
 import { InvalidCredentialsError } from '@/errors/auth'
 import { default as dictionary } from '@/languages/en.json'
+import prisma from '@/libs/prismadb'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import bcrypt from 'bcrypt'
 import { AuthOptions } from 'next-auth'
