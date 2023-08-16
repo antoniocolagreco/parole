@@ -1,6 +1,6 @@
 import prisma from '@libs/prismadb'
-import bcrypt from 'bcrypt'
 import { NextRequest, NextResponse } from 'next/server'
+import { hashPassword } from '../../../auth/passwordHashing'
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       return new NextResponse('Missing email, name or password', { status: 400 })
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12)
+    const hashedPassword = await hashPassword(password)
 
     const user = await prisma?.user.create({
       data: {

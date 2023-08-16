@@ -1,8 +1,8 @@
+import { verifyPassword } from '@auth/passwordHashing'
 import { InvalidCredentialsError } from '@errors/auth'
 import { default as dictionary } from '@languages/en.json'
 import prisma from '@libs/prismadb'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import bcrypt from 'bcrypt'
 import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GithubProvider from 'next-auth/providers/github'
@@ -27,7 +27,8 @@ const authOptions: AuthOptions = {
         if (!user) throw new InvalidCredentialsError()
         if (!user.hashedPassword) throw new InvalidCredentialsError()
 
-        const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword)
+        // const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword)
+        const isCorrectPassword = await verifyPassword(user.hashedPassword, credentials.password)
         if (!isCorrectPassword) throw new InvalidCredentialsError()
 
         return user

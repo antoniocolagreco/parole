@@ -25,3 +25,17 @@ export class InvalidCredentialsError extends Error {
     this.name = 'InvalidCredentialsError'
   }
 }
+
+export class PasswordHashingError extends Error {
+  constructor() {
+    super('Error hashing password')
+    this.name = 'PasswordHashingError'
+  }
+}
+
+export class PasswordVerificationError extends Error {
+  constructor() {
+    super('Error verifying password')
+    this.name = 'PasswordVerificationError'
+  }
+}

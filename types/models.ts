@@ -1,20 +1,11 @@
-type User = {
-  id: string
-  name?: string
-  email?: string
-  email_verified: string
-  image: string
-  hashedPassword?: string
-  createdAt: Date
-  updatedAt: Date
-  conversationIds: string[]
-  conversations: Conversation[]
-  seenMessageIds: string[]
-  seenMessages: Message[]
-  messages: Message[]
-  account: Account[]
-}
+import {
+  Account as PrismaAccount,
+  Conversation as PrismaConversation,
+  Message as PrismaMessage,
+  User as PrismaUser,
+} from '@prisma/client';
 
-type Conversation = {}
-type Message = {}
-type Account = {}
+export type User = PrismaUser & { conversations: Conversation[]; messages: Message[] }
+export type Conversation = PrismaConversation & { users: User[]; messages: Message[] }
+export type Message = PrismaMessage & { seen: User[] }
+export type Account = PrismaAccount & {}

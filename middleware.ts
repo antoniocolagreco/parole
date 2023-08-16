@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
 
   const url = request.nextUrl.clone()
 
-  if (url.pathname === '/users') {
+  if (url.pathname === '/users' || url.pathname === '/conversations') {
     if (!token) return NextResponse.redirect(new URL('/', request.url))
   }
 

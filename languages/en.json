@@ -17,5 +17,8 @@
   "select_a_chat_or_start_a_new_conversation": "Select a chat or start a new conversation",
   "chat": "Chat",
   "users": "Users",
-  "logout": "Logout"
+  "logout": "Logout",
+  "messages": "Messages",
+  "sent_an_image": "Sent an image",
+  "started_a_conversation": "Started a conversation"
 }

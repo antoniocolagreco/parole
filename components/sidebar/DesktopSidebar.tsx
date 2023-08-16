@@ -2,7 +2,7 @@
 import useRoutes from '@hooks/useRoutes'
 import { User } from '@prisma/client'
 import { FC, HTMLAttributes, useState } from 'react'
-import Avatar from '../Avatar/Avatar'
+import Avatar from '../avatar/Avatar'
 import DesktopItem from './DesktopItem'
 
 type DesktopSidebarProps = HTMLAttributes<HTMLDivElement> & { currentUser: User | null }
@@ -40,7 +40,7 @@ const DesktopSidebar: FC<DesktopSidebarProps> = (props) => {
       </nav>
       <nav className='mt-4 flex flex-col justify-between items-center'>
         <button onClick={() => setIsOpen(true)} className='cursor-pointer hover:opacity-75 transition'>
-          <Avatar currentUser={currentUser} />
+          <Avatar imageUrl={currentUser?.image} />
         </button>
       </nav>
     </div>
