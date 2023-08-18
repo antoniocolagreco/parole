@@ -51,9 +51,8 @@ const ConversationBox: FC<ConversationBoxProps> = (props) => {
       return dictionary.sent_an_image
     }
     if (lastMessage?.body) {
-      lastMessage.body
+      return lastMessage.body
     }
-
     return dictionary.started_a_conversation
   }, [lastMessage])
 
@@ -75,7 +74,7 @@ const ConversationBox: FC<ConversationBoxProps> = (props) => {
               <p className='text-xs text-gray-400 font-medium'>{format(new Date(conversation.lastMessageAt))}</p>
             )}
           </div>
-          <p className={clsx(`truncate text-sm`, hasSeen ? 'text-gray-500' : 'text-black')}>
+          <p className={clsx(`truncate text-sm`, hasSeen ? 'text-gray-400' : 'text-black font-semibold')}>
             {lastMessageText}
           </p>
         </div>

@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@auth/helpers'
+import { getCurrentUser } from 'helpers/helpers'
 import { FC, HTMLAttributes } from 'react'
 import DesktopSidebar from './DesktopSidebar'
 import MobileFooter from './MobileFooter'

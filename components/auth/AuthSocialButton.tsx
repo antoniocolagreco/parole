@@ -7,7 +7,7 @@ type AuthSocialButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 const AuthSocialButton: FC<AuthSocialButtonProps> = (props) => {
-  const { icon: Icon, disabled, className, ...otherProps } = props
+  const { icon: Icon, disabled, className = "", ...otherProps } = props
   return (
     <button
       className={clsx(

@@ -35,10 +35,10 @@ const MobileItem: FC<MobileItemProps> = (props) => {
         justify-center
         p-4 
         text-gray-500
-        hover:text-black
-        hover:bg-gray-100
+        hover:text-violet-600
+        hover:bg-violet-100
         `,
-            active && 'bg-gray-100 text-black'
+            active && 'bg-gray-100 text-violet-500'
           )}
         >
           {content}
@@ -58,10 +58,10 @@ const MobileItem: FC<MobileItemProps> = (props) => {
             justify-center
             p-4 
             text-gray-500
-            hover:text-black
-            hover:bg-gray-100
+            hover:text-violet-600
+            hover:bg-violet-100
       `,
-            active && 'bg-gray-100 text-black'
+            active && 'bg-gray-100 text-violet-500'
           )}
           {...(onClick ? { onClick } : {})}
         >

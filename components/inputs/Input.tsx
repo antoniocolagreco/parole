@@ -17,8 +17,8 @@ type InputProps = {
 
 const Input: FC<InputProps> = (props) => {
   const {
-    containerClassName,
-    className,
+    containerClassName = '',
+    className = "",
     label,
     id,
     autoComplete = id,

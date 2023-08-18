@@ -1,6 +1,6 @@
 import prisma from '@libs/prismadb'
 import { NextRequest, NextResponse } from 'next/server'
-import { hashPassword } from '../../../auth/passwordHashing'
+import { hashPassword } from '../../../helpers/passwordHashing'
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,8 +24,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(user)
   } catch (error) {
     const err = error as Error
-    if (err.message.includes('User_email_key'))
+    if (err.message.includes('User_email_key')) {
       return new NextResponse('The email address is already registered', { status: 400 })
+    }
     return new NextResponse('Internal Error', { status: 500 })
   }
 }

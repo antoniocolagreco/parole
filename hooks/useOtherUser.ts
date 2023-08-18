@@ -7,7 +7,8 @@ const useOtherUser = (conversation: Conversation) => {
 
   const otherUser = useMemo(() => {
     const currentUserEmail = session.data?.user?.email
-    return conversation.users.find((user) => user.email !== currentUserEmail)
+    const user = conversation.users.find((user) => user.email !== currentUserEmail)
+    return user
   }, [session.data?.user?.email, conversation.users])
 
   return otherUser

@@ -3,8 +3,9 @@
 import { default as dictionary } from '@languages/en.json'
 import axios, { AxiosError } from 'axios'
 import clsx from 'clsx'
-import { signIn } from 'next-auth/react'
-import { FC, HTMLAttributes, useCallback, useState } from 'react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { FC, HTMLAttributes, useCallback, useEffect, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
@@ -20,15 +21,23 @@ enum Variant {
 }
 
 const AuthForm: FC<AuthFromProps> = (props) => {
-  const { className, ...otherProps } = props
+  const { className = '', ...otherProps } = props
   const [variant, setVariant] = useState<Variant>(Variant.LOGIN)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const session = useSession()
+  const router = useRouter()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>()
+
+  useEffect(() => {
+    if (session?.status === 'authenticated') {
+      router.push('/conversations')
+    }
+  }, [session?.status, router])
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)

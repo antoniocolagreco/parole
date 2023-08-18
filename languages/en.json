@@ -20,5 +20,7 @@
   "logout": "Logout",
   "messages": "Messages",
   "sent_an_image": "Sent an image",
-  "started_a_conversation": "Started a conversation"
+  "started_a_conversation": "Started a conversation",
+  "write_a_message": "Write a message",
+  "avatar": "Avatar"
 }

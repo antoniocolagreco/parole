@@ -1,6 +1,6 @@
 import prisma from '@libs/prismadb'
 import { NextRequest, NextResponse } from 'next/server'
-import { getCurrentUser } from '../../../auth/helpers'
+import { getCurrentUser } from '../../../helpers/helpers'
 
 export type Conversation = {
   userId: string
@@ -61,4 +61,24 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     return new NextResponse('Internal error', { status: 500 })
   }
+}
+
+export async function GET(request: NextRequest) {
+  return new NextResponse('Method Not Allowed', { status: 405 })
+}
+
+export async function PUT(request: NextRequest) {
+  return new NextResponse('Method Not Allowed', { status: 405 })
+}
+
+export async function PATCH(request: NextRequest) {
+  return new NextResponse('Method Not Allowed', { status: 405 })
+}
+
+export async function DELETE(request: NextRequest) {
+  return new NextResponse('Method Not Allowed', { status: 405 })
+}
+
+export async function HEAD(request: NextRequest) {
+  return new NextResponse('Method Not Allowed', { status: 405 })
 }
